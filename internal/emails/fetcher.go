@@ -14,13 +14,21 @@ import (
 )
 
 type RSVPItem struct {
-	Email string `json:"email"`
+	ID         int    `json:"id"`
+	Email      string `json:"email"`
+	HeardAbout string `json:"heard_about"`
+}
+
+type SubmissionItem struct {
+	ID     int `json:"id"`
+	RsvpID int `json:"rsvp_id"`
 }
 
 type InertiaPayload struct {
 	Component string `json:"component"`
 	Props     struct {
-		RSVPs []RSVPItem `json:"rsvps"`
+		RSVPs       []RSVPItem       `json:"rsvps"`
+		Submissions []SubmissionItem `json:"submissions"`
 	} `json:"props"`
 }
 
@@ -79,17 +87,37 @@ func Fetch() []string {
 		return emails
 	}
 
-	totalRSVPs := len(payload.Props.RSVPs)
-	seen := make(map[string]bool)
-
+	// Map rsvp_id -> normalized email
+	rsvpEmailMap := make(map[int]string)
 	for _, item := range payload.Props.RSVPs {
-		email := strings.ToLower(strings.TrimSpace(item.Email))
-		if email != "" && !seen[email] {
-			seen[email] = true
-			emails = append(emails, email)
+		normalized := strings.ToLower(strings.TrimSpace(item.Email))
+		if normalized != "" {
+			rsvpEmailMap[item.ID] = normalized
 		}
 	}
 
-	log.Printf("[fetcher] Done. Found %d raw RSVPs -> extracted %d unique emails.", totalRSVPs, len(emails))
+	// Identify emails linked to existing submissions
+	submittedEmails := make(map[string]bool)
+	for _, sub := range payload.Props.Submissions {
+		if email, found := rsvpEmailMap[sub.RsvpID]; found {
+			submittedEmails[email] = true
+		}
+	}
+
+	// Collect unique emails that do not have a submission
+	seen := make(map[string]bool)
+	for _, item := range payload.Props.RSVPs {
+		email := strings.ToLower(strings.TrimSpace(item.Email))
+		if email == "" || seen[email] || submittedEmails[email] {
+			continue
+		}
+
+		seen[email] = true
+		emails = append(emails, email)
+	}
+
+	log.Printf("[fetcher] Done. RSVPs: %d, Submissions: %d -> Returning %d unsubmitted unique emails.",
+		len(payload.Props.RSVPs), len(payload.Props.Submissions), len(emails))
+
 	return emails
 }
