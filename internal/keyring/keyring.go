@@ -51,7 +51,7 @@ func getOrPrompt(key, label string) string {
 		log.Fatalf("Error saving %s to keyring: %v", label, err)
 	}
 
-	log.Printf("[keyring] secrets initialized successfully.")
+	log.Printf("[keyring] secret added successfully.")
 
 	return val
 }

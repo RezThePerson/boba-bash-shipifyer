@@ -11,7 +11,7 @@ func main() {
 
 	// emails := emails.Fetch()
 
-	emails := []string{"utkrishth@utkrishth.in"}
+	emails := []string{"reztheperson@proton.me"}
 
 	slackIDs := slack_id.Get(emails)
 
