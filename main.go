@@ -35,7 +35,8 @@ func main() {
 		slackIDs := slack_id.Get(emails)
 		slack.Msg(slackIDs)
 	case 1:
-		fmt.Println("Fetching Slack IDs...")
+		emails := emails.Fetch()
+		slack_id.Get(emails)
 	case 2:
 		input := promptui.Prompt{
 			Label: "Enter custom email to get slack id and send msg to (run /se info @user if you dont know)",
