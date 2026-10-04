@@ -5,6 +5,7 @@ import (
 
 	"github.com/reztheperson/boba-bash-shipifyer/internal/emails"
 	"github.com/reztheperson/boba-bash-shipifyer/internal/keyring"
+	"github.com/reztheperson/boba-bash-shipifyer/internal/slack_id"
 )
 
 func main() {
@@ -12,5 +13,6 @@ func main() {
 
 	emails := emails.Fetch()
 
-	
+	slackIDs := slack_id.Get(emails)
+	log.Printf("Resolved %d Slack user IDs: %v", len(slackIDs), slackIDs)
 }

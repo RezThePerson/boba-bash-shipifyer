@@ -79,7 +79,9 @@ func Fetch() []string {
 		return emails
 	}
 
+	totalRSVPs := len(payload.Props.RSVPs)
 	seen := make(map[string]bool)
+
 	for _, item := range payload.Props.RSVPs {
 		email := strings.ToLower(strings.TrimSpace(item.Email))
 		if email != "" && !seen[email] {
@@ -88,5 +90,6 @@ func Fetch() []string {
 		}
 	}
 
+	log.Printf("[fetcher] Done. Found %d raw RSVPs -> extracted %d unique emails.", totalRSVPs, len(emails))
 	return emails
 }
