@@ -10,6 +10,8 @@ A simple tool to automatically get your attendees emails, then their slack ids a
 
 USE UNDER YOUR OWN RISK.. IF YOU FUCK SOMETHING UP DONT BLAME ME, I CAN HELP FIX IT BUT IT WOULD STILL BE YOUR FAULT.
 
+NOTE: IT WILL AUTO SEND MESSAGES TO PARTICIPANTS THAT YOU HAVE NEVER INTERACTED WITH BEFORE, for people you have dms with before it asks, and ignores people who have submitted a project.
+
 ### Slack app
 
 create a app with this manifest
@@ -65,8 +67,6 @@ and add a message there like "hey, lock the FUCK IN YOU-" /j
 you need Go and a Keyring setup before hand
 
 install: `go install github.com/reztheperson/boba-bash-shipifyer`
-
-NOTE: IT WILL AUTO SEND MESSAGES TO PARTICIPANTS THAT YOU HAVE NEVER INTERACTED WITH BEFORE, for people you have dms with before it asks.
 
 running: `boba-bash-shipifyer`
 
