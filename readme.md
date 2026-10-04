@@ -8,6 +8,8 @@ A simple tool to automatically get your attendees emails, then their slack ids a
 
 ## Setup 
 
+USE UNDER YOUR OWN RISK.. IF YOU FUCK SOMETHING UP DONT BLAME ME, I CAN HELP FIX IT BUT IT WOULD STILL BE YOUR FAULT.
+
 ### Slack app
 
 create a app with this manifest
