@@ -43,4 +43,31 @@ and install it, save the bot and user token.
 
 ### Org portal
 
+open your organize portal, save the event number (bash.hackclub.com/organize/XX) 
 
+open dev tools, then open the cookies section (via the application tab on chromium and storage tab on firefox) save the "_session_id" cookie
+
+### Message
+
+run 
+
+```bash
+mkdir ~/.boba-bash-shipifyer/
+nano ~/.boba-bash-shipifyer/message.md
+```
+
+and add a message there like "hey, lock the FUCK IN YOU-" /j
+
+### Tool
+
+you need Go and a Keyring setup before hand
+
+install: `go install github.com/reztheperson/boba-bash-shipifyer`
+
+NOTE: IT WILL AUTO SEND MESSAGES TO PARTICIPANTS THAT YOU HAVE NEVER INTERACTED WITH BEFORE, for people you have dms with before it asks.
+
+running: `boba-bash-shipifyer`
+
+on the first time paste the secrets.
+
+enjoy
