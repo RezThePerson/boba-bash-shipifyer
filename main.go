@@ -18,7 +18,7 @@ func main() {
 		Label: "What do you want to do?",
 		Items: []string{
 			"Full flow (get emails, slack id, and send msg)",
-			"Get emails + not shipped count (aka test for correct panel cookie)",
+			"Get emails + not shipped count + not on slack emails (aka test for correct panel cookie or list of people not on slack)",
 			"Get slack id + send msg to custom email (aka test for correct slack tokens)",
 		},
 	}
